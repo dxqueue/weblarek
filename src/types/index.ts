@@ -5,23 +5,37 @@ export interface IApi {
     post<T extends object>(uri: string, data: object, method?: ApiPostMethods): Promise<T>;
 }
 
-export type ICategory = 'другое' | 'софт-скил' | 'хард-скил' | 'кнопка' | 'дополнительное';
+export type TPayment = "cash" | "card";
+
+export type TCategory = "софт-скил" | "хард-скил" | "дополнительное" | "кнопка" | "другое"
+
+export interface IBuyer {
+  payment: TPayment;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 export interface IProduct {
     id: string;
-    title: string;
-    image: string;
-    category: ICategory;
-    price: number | null;
     description: string;
+    image: string;
+    title: string;
+    price: number | null;
+    category: TCategory;
 }
 
-export type IPayment = 'card' | 'cash' | '';
+export interface IOrderResponse {
+  id: string;
+  total: number;
+}
 
+export interface IProductCatalogResponse {
+  total: number;
+  items: IProduct[];
+}
 
- export interface IBuyer {
-    payment: IPayment;
-    address: string;
-    email: string;
-    phone: string;
- }
+export interface IOrderRequest extends IBuyer {
+  total: number;
+  items: string[];
+}
