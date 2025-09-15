@@ -1,16 +1,17 @@
 import { Api } from "../base/Api";
 import { IOrderRequest, IProduct, IProductCatalogResponse, IOrderResponse} from "../../types";
 
-export class LarekAPI extends Api {
+export class LarekAPI {
+    protected api: Api;
     readonly cdn: string;
 
     constructor(cdn: string, baseUrl: string, options?: RequestInit) {
-        super(baseUrl, options);
+        this.api = new Api(baseUrl, options);
         this.cdn = cdn;
     }
 
     getProductList(): Promise<IProduct[]> {
-        return this.get('/product').then((data: IProductCatalogResponse) =>
+        return this.api.get('/product').then((data: IProductCatalogResponse) =>
             data.items.map((item) => ({
                 ...item,
                 image: this.cdn + item.image
@@ -18,16 +19,7 @@ export class LarekAPI extends Api {
         )
     };
 
-    getProduct(id: string): Promise<IProduct> {
-        return this.get(`/product/${id}`).then((item: IProduct) => ({
-				...item,
-				image: this.cdn + item.image,
-			})
-		);
-
-    };
-
     orderProducts(order: IOrderRequest): Promise<IOrderResponse> {
-        return this.post('/order', order).then((data: IOrderResponse) => data);
+        return this.api.post('/order', order).then((data: IOrderResponse) => data);
     };
 }

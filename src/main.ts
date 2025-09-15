@@ -6,6 +6,7 @@ import { apiProducts } from './utils/data';
 import { IBuyer } from './types';
 import { API_URL, CDN_URL } from './utils/constants';
 import { LarekAPI } from './components/models/LarekAPI';
+import { Api } from './components/base/Api';
 
 // проверка методов класса ProductCatalog
 
@@ -39,12 +40,13 @@ const buyer = new Buyer();
 console.log('Получение данных о покупателе: ', buyer.getBuyerData());
 console.log('Валидация данных: ', buyer.validatiobBuyerData());
 const newUser: IBuyer = {
-    "payment": "cash",
+    "payment": "",
     "email": "example@gmail.com",
     "phone": "123456789",
     "address": 'Sanya',
 };
 buyer.setBuyerData(newUser);
+console.log('Валидация данных: ', buyer.validatiobBuyerData());
 console.log('Получение данных о покупателе: ', buyer.getBuyerData());
 buyer.clearBuyerData();
 console.log('Получение данных о покупателе: ', buyer.getBuyerData());

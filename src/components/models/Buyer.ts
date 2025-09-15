@@ -1,10 +1,10 @@
 import { IBuyer, TPayment} from "../../types";
 
 export class Buyer {
-    payment: TPayment = 'card';
-    email: string = '';
-    phone: string = '';
-    address: string = '';
+    private payment: TPayment = 'card';
+    private email: string = '';
+    private phone: string = '';
+    private address: string = '';
 
     constructor () {
         this.payment = 'card';
@@ -54,6 +54,10 @@ export class Buyer {
         if(!this.address) {
             errors.address = 'Введите адрес доставки';
         };
+
+        if(!this.payment) {
+            errors.payment = 'Необходимо указать способ оплаты';
+        }
 
         return errors;
     }

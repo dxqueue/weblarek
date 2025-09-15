@@ -5,9 +5,9 @@ export interface IApi {
     post<T extends object>(uri: string, data: object, method?: ApiPostMethods): Promise<T>;
 }
 
-export type TPayment = "cash" | "card";
+export type TPayment = 'cash' | 'card' | '';
 
-export type TCategory = "софт-скил" | "хард-скил" | "дополнительное" | "кнопка" | "другое"
+export type TCategory = 'софт-скил' | 'хард-скил' | 'дополнительное' | 'кнопка' | 'другое';
 
 export interface IBuyer {
     payment: TPayment;
