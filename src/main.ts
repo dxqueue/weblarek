@@ -4,6 +4,8 @@ import { Basket } from './components/models/Basket';
 import { Buyer } from './components/models/Buyer';
 import { apiProducts } from './utils/data';
 import { IBuyer } from './types';
+import { API_URL, CDN_URL } from './utils/constants';
+import { LarekAPI } from './components/models/LarekAPI';
 
 // проверка методов класса ProductCatalog
 
@@ -48,3 +50,13 @@ buyer.clearBuyerData();
 console.log('Получение данных о покупателе: ', buyer.getBuyerData());
 
 // Работа с сервером
+
+const api = new LarekAPI(CDN_URL, API_URL);
+
+api.getProductList()
+    .then(products => {
+        catalog.setCatalog(products);
+        console.log('Товары загруженные с сервера в каталог:');
+        console.log(catalog.getCatalog());
+    })
+    .catch(error => console.log('Ошибка при загрузке каталога', error));

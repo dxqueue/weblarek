@@ -129,7 +129,7 @@ interface IBuyer {
 
 #### Способы оплаты товара (IPayment)
 ```typescript
-type IPayment = 'card' | 'cash' | '';
+type IPayment = 'card' | 'cash';
 ```
 
 ### Модели данных
@@ -196,4 +196,4 @@ type IPayment = 'card' | 'cash' | '';
 Методы класса:
 `getProductList():Promise<IProduct[]>` - получение полного списка товаров.
 `getProduct(id: string):Promise<IProduct>` - получение товара по его уникальному идентификатору.
-`orderProducts` -
+`orderProducts(order: IOrderRequest): Promise<IOrderResponse>` - отправление заказа на сервер.

@@ -10,10 +10,10 @@ export type TPayment = "cash" | "card";
 export type TCategory = "софт-скил" | "хард-скил" | "дополнительное" | "кнопка" | "другое"
 
 export interface IBuyer {
-  payment: TPayment;
-  email: string;
-  phone: string;
-  address: string;
+    payment: TPayment;
+    email: string;
+    phone: string;
+    address: string;
 }
 
 export interface IProduct {
@@ -26,16 +26,16 @@ export interface IProduct {
 }
 
 export interface IOrderResponse {
-  id: string;
-  total: number;
+    id: string;
+    total: number;
 }
 
 export interface IProductCatalogResponse {
-  total: number;
-  items: IProduct[];
+    total: number;
+    items: IProduct[];
 }
 
 export interface IOrderRequest extends IBuyer {
-  total: number;
-  items: string[];
+    total: number;
+    items: string[];
 }
