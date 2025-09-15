@@ -5,8 +5,8 @@ export class LarekAPI {
     protected api: Api;
     readonly cdn: string;
 
-    constructor(cdn: string, baseUrl: string, options?: RequestInit) {
-        this.api = new Api(baseUrl, options);
+    constructor(cdn: string, api: Api) {
+        this.api = api;
         this.cdn = cdn;
     }
 

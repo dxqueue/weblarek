@@ -53,9 +53,10 @@ console.log('Получение данных о покупателе: ', buyer.g
 
 // Работа с сервером
 
-const api = new LarekAPI(CDN_URL, API_URL);
+const baseApi = new Api(API_URL);
+const larekAPI = new LarekAPI(CDN_URL, baseApi);
 
-api.getProductList()
+larekAPI.getProductList()
     .then(products => {
         catalog.setCatalog(products);
         console.log('Товары загруженные с сервера в каталог:');
