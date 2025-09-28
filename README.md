@@ -181,7 +181,7 @@ type IPayment = 'card' | 'cash';
 Методы класса:
 `setBuyerData(data: IBuyer):void` - сохранение данных покупателя.
 `getBuyerData():IBuyer` - поулчение данных покупателя.
-`validatiobBuyerData():boolean` - проверка даных покпателя.
+`validateData():boolean` - проверка даных покпателя.
 `clearBuyerData():void` - удаление данных покупателя.
 
 ### Слой коммуникации

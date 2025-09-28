@@ -1,20 +1,29 @@
 import { IProduct } from "../../types";
+import { IEvents } from "../base/Events";
 
 export class Basket {
     private items: IProduct[] = [];
 
-    constructor() {
+    constructor(protected events: IEvents) {
         this.items = [];
     }
 
     addInBasket(product: IProduct):void {
+        if (product.price === null) {
+            return;
+        }
+
         if(!this.hasInBasket(product.id)) {
-            this.items.push(product);
+            this.items = [...this.items, product];
+            this.events.emit('basket:changed', product);
+            console.log('[basket:changed]', this.getBasket());
         };
     }
 
     removeFromBasket(product: IProduct):void {
         this.items = this.items.filter(item => item.id !== product.id);
+        this.events.emit('basket:changed', product);
+        console.log('[basket:changed]', this.getBasket());
     }
 
     getBasketCount():number {
@@ -36,10 +45,12 @@ export class Basket {
     }
 
     getBasket():IProduct[] {
-        return this.items;
+        return [...this.items];
     }
 
     clearBasket():void {
         this.items = [];
+        this.events.emit('basket:changed');
+        console.log('[basket:changed]', this.getBasket());
     }
 }

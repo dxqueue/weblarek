@@ -39,3 +39,23 @@ export interface IOrderRequest extends IBuyer {
     total: number;
     items: string[];
 }
+
+export interface ICardActions {
+    onClick?: (event: MouseEvent) => void;
+}
+
+export interface ICardBasketActions {
+    onRemove?: (event: MouseEvent) => void;
+}
+
+export interface IBasketActions {
+    onOrder?: () => void;
+}
+
+export interface IFormActions {
+    onSubmit?: (event: Event) => void;
+}
+
+export interface ISuccessActions {
+    onClose?: () => void;
+}
