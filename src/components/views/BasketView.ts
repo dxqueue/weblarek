@@ -27,7 +27,18 @@ export class BasketView extends Component<IBasketView> {
     };
 
     set items(value: HTMLElement[]) {
-        this.basketList.replaceChildren(...value);
+        if (value.length === 0) {
+            const emptyMessage = document.createElement('div');
+            emptyMessage.className = 'empty';
+            emptyMessage.textContent = 'Корзина пуста';
+            this.items = [emptyMessage];
+            this.buttonDisabled = true;
+            this.buttonText = 'Оформить';
+        } else {
+            this.basketList.replaceChildren(...value);
+            this.buttonDisabled = false;
+            this.buttonText = 'Оформить';
+        };
     };
 
     set buttonText(value: string) {

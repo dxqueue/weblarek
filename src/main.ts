@@ -127,20 +127,7 @@ events.on('basket:open', () => {
             index: index + 1
         });
     });
-
-    if (cardItems.length === 0) {
-        const emptyMessage = document.createElement('div');
-        emptyMessage.className = 'empty';
-        emptyMessage.textContent = 'Корзина пуста';
-        basket.items = [emptyMessage];
-        basket.buttonDisabled = true;
-        basket.buttonText = 'Оформить';
-    } else {
-        basket.items = basketItems;
-        basket.buttonDisabled = false;
-        basket.buttonText = 'Оформить';
-    };
-
+    basket.items = basketItems;
     basket.total = basketModel.getBasketTotal();
     modal.render({ content: basket.render()});
     modal.open();
